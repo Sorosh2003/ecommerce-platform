@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop - HaidariStore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="nav-wrapper">
+        <div class="logo"><a href="index.html">Haidari<span>Store</span></a></div>
+        <nav class="nav-menu">
+          <ul>
+            <li><a href="main.html">Home</a></li>
+            <li><a href="shop.html" class="active">Shop</a></li>
+            <li><a href="#">Collections</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="nav-icons">
+          <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-bag"></i><span class="cart-count" id="cartCount">0</span></a>
+        </div>
+        <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="shop-header">
+      <h1>All Products</h1>
+      <div class="shop-filters">
+        <select id="categoryFilter">
+          <option value="all">All Categories</option>
+          <option value="men">Men's Fashion</option>
+          <option value="women">Women's Fashion</option>
+          <option value="footwear">Footwear</option>
+          <option value="accessories">Accessories</option>
+        </select>
+        <select id="sortFilter">
+          <option value="default">Default</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </div>
+    </div>
+    <div class="products-grid" id="allProducts"></div>
+  </main>
+
+  <footer class="footer">...</footer>
+
+  <script src="products.js"></script>
+  <script>
+    function displayAllProducts() {
+      const grid = document.getElementById('allProducts');
+      let filtered = [...products];
+      
+      const category = document.getElementById('categoryFilter')?.value;
+      const sort = document.getElementById('sortFilter')?.value;
+      
+      if (category && category !== 'all') {
+        filtered = filtered.filter(p => p.category === category);
+      }
+      
+      if (sort === 'price-low') filtered.sort((a,b) => a.price - b.price);
+      else if (sort === 'price-high') filtered.sort((a,b) => b.price - a.price);
+      else if (sort === 'name') filtered.sort((a,b) => a.name.localeCompare(b.name));
+      
+      grid.innerHTML = filtered.map(product => `
+        <div class="product-card" data-id="${product.id}">
+          <div class="product-image"><img src="${product.image}" alt="${product.name}"></div>
+          <div class="product-info">
+            <h3 class="product-title">${product.name}</h3>
+            <div class="product-price">$${product.price}</div>
+            <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+          </div>
+        </div>
+      `).join('');
+      
+      document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          addToCart(parseInt(btn.dataset.id));
+        });
+      });
+      
+      document.querySelectorAll('.product-card').forEach(card => {
+        card.addEventListener('click', () => {
+          window.location.href = `product.html?id=${card.dataset.id}`;
+        });
+      });
+    }
+    
+    document.getElementById('categoryFilter')?.addEventListener('change', displayAllProducts);
+    document.getElementById('sortFilter')?.addEventListener('change', displayAllProducts);
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartCount();
+      displayAllProducts();
+    });
+  </script>
+</body>
+</html>

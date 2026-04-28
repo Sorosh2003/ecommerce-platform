@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - UrbanStore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="main.css">
+  <style>
+    .cart-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      padding: 3rem 0;
+    }
+    .cart-header {
+      display: grid;
+      grid-template-columns: 100px 2fr 1fr 1fr 0.5fr;
+      padding: 1rem;
+      background: #f8f9fa;
+      font-weight: 600;
+      border-radius: 8px;
+    }
+    .checkout-btn {
+      background: #FF0055;
+      color: white;
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    @media (max-width: 768px) {
+      .cart-container { grid-template-columns: 1fr; }
+      .cart-header { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header"><!-- same header --></header>
+  <div class="container cart-container">
+    <div>
+      <div class="cart-header">
+        <div>Product</div><div>Name</div><div>Price</div><div>Quantity</div><div>Total</div>
+      </div>
+      <div id="cartItems"></div>
+    </div>
+    <div class="cart-summary">
+      <h3>Order Summary</h3>
+      <div class="summary-row"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
+      <div class="summary-row"><span>Shipping</span><span>Free</span></div>
+      <div class="summary-row"><strong>Total</strong><strong id="cartTotal">$0.00</strong></div>
+      <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+    </div>
+  </div>
+  <footer class="footer"><!-- same footer --></footer>
+  <script src="products.js"></script>
+  <script>
+    function displayCart() {
+      const container = document.getElementById('cartItems');
+      if (cart.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:2rem;">Your cart is empty.<br><a href="shop.html">Continue Shopping</a></div>';
+        document.getElementById('cartSubtotal').textContent = '$0.00';
+        document.getElementById('cartTotal').textContent = '$0.00';
+        return;
+      }
+      container.innerHTML = cart.map(item => `
+        <div class="cart-item" style="grid-template-columns:100px 2fr 1fr 1fr 0.5fr; align-items:center; padding:1rem; border-bottom:1px solid #eee;">
+          <img src="${item.image}" style="width:80px; height:80px; object-fit:cover; border-radius:8px;">
+          <div>${item.name}</div>
+          <div>$${item.price}</div>
+          <div><button onclick="updateQuantity(${item.id}, ${item.quantity-1})">-</button> ${item.quantity} <button onclick="updateQuantity(${item.id}, ${item.quantity+1})">+</button></div>
+          <div>$${(item.price * item.quantity).toFixed(2)}</div>
+        </div>
+      `).join('');
+      const total = getCartTotal();
+      document.getElementById('cartSubtotal').textContent = `$${total.toFixed(2)}`;
+      document.getElementById('cartTotal').textContent = `$${total.toFixed(2)}`;
+    }
+    function checkout() { alert('Checkout feature - Add payment integration'); }
+    document.addEventListener('DOMContentLoaded', () => { updateCartCount(); displayCart(); });
+  </script>
+</body>
+</html>
