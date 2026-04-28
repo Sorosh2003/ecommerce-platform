@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haidari| Modern E-Commerce</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="nav-wrapper">
+        <div class="logo">
+          <a href="index.html"> Haidari <span>Store</span></a>
+        </div>
+        <nav class="nav-menu">
+          <ul>
+            <li><a href="main.html" class="active">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="#">Collections</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="nav-icons">
+          <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
+          <a href="cart.html" class="cart-icon">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="cart-count" id="cartCount">0</span>
+          </a>
+        </div>
+        <div class="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-badge">Summer Collection 2025</span>
+        <h1>Style That<br>Speaks Volume</h1>
+        <p>Discover the latest trends in fashion. Quality pieces designed to elevate your everyday style.</p>
+        <a href="shop.html" class="btn-primary">Shop Now <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="hero-image">
+        <img src="https://placehold.co/600x500/f5f5f5/333?text=Fashion+Model" alt="Hero">
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Categories -->
+  <section class="categories">
+    <div class="container">
+      <div class="section-header">
+        <h2>Shop by Category</h2>
+        <p>Find exactly what you're looking for</p>
+      </div>
+      <div class="categories-grid">
+        <div class="category-card">
+          <i class="fas fa-tshirt"></i>
+          <h3>Men's Fashion</h3>
+          <p>250+ items</p>
+          <a href="shop.html?category=men">Shop Now →</a>
+        </div>
+        <div class="category-card">
+          <i class="fas fa-female"></i>
+          <h3>Women's Fashion</h3>
+          <p>380+ items</p>
+          <a href="shop.html?category=women">Shop Now →</a>
+        </div>
+        <div class="category-card">
+          <i class="fas fa-shoe-prints"></i>
+          <h3>Footwear</h3>
+          <p>120+ items</p>
+          <a href="shop.html?category=footwear">Shop Now →</a>
+        </div>
+        <div class="category-card">
+          <i class="fas fa-clock"></i>
+          <h3>Accessories</h3>
+          <p>95+ items</p>
+          <a href="shop.html?category=accessories">Shop Now →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured-products">
+    <div class="container">
+      <div class="section-header">
+        <h2>Featured Products</h2>
+        <p>Our most popular items this season</p>
+        <a href="shop.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="products-grid" id="featuredProducts"></div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div class="container">
+      <div class="newsletter-content">
+        <h3>Subscribe to Our Newsletter</h3>
+        <p>Get 10% off your first order and be the first to know about new arrivals</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>UrbanStore</h4>
+          <p>Modern fashion for the modern individual.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#">Men's Fashion</a></li>
+            <li><a href="#">Women's Fashion</a></li>
+            <li><a href="#">Footwear</a></li>
+            <li><a href="#">Accessories</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><i class="fas fa-envelope"></i> Haidariarts@example.com</li>
+            <li><i class="fas fa-phone"></i> xxxxxxxxxxxx</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Sorosh2003. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
